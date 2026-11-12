@@ -1,0 +1,49 @@
+- generic [ref=e2]:
+  - complementary [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]: M
+        - generic [ref=e7]: Meridian Bank
+      - generic [ref=e8]:
+        - text: Personal banking
+        - heading "Your money, clearly in view." [level=1] [ref=e9]: Your money,clearly in view.
+        - paragraph [ref=e10]: Savings, investments and salary accounts together in one place. Open an account, move money and see every transaction as it happens.
+      - generic [ref=e11]:
+        - generic [ref=e14]:
+          - strong [ref=e15]: Three account types
+          - text: Each with its own rules and interest rate
+        - generic [ref=e18]:
+          - strong [ref=e19]: Clear transaction history
+          - text: Every deposit, withdrawal and interest payment
+        - generic [ref=e22]:
+          - strong [ref=e23]: Secure by design
+          - text: Password hashing and a layered Java backend
+      - generic [ref=e24]: CSE202 · Object Oriented Analysis & Design with Java
+  - main [ref=e25]:
+    - generic [ref=e26]:
+      - generic [ref=e27]:
+        - text: Welcome
+        - heading "Sign in to your account" [level=2] [ref=e28]
+        - paragraph [ref=e29]: Enter your details to continue to online banking.
+      - generic [ref=e30]:
+        - button "Sign in" [ref=e31] [cursor=pointer]
+        - button "Register" [ref=e32] [cursor=pointer]
+      - generic [ref=e33]:
+        - generic [ref=e34]:
+          - text: Email address
+          - textbox "Email address" [ref=e35]: dafila.philimon@example.com
+        - generic [ref=e36]:
+          - text: Password
+          - textbox "Password" [ref=e37]: Passw0rd!
+        - button "Sign in" [ref=e38] [cursor=pointer]
+      - generic [ref=e39]:
+        - generic [ref=e40]:
+          - strong [ref=e41]: Demo access · Dafila Philimon
+          - generic [ref=e42]:
+            - text: Email
+            - code [ref=e43]: dafila.philimon@example.com
+          - generic [ref=e44]:
+            - text: Password
+            - code [ref=e45]: Passw0rd!
+        - button "Use demo" [ref=e46] [cursor=pointer]
+    - paragraph [ref=e47]: Balances are shown in Botswana Pula (BWP). This is a coursework demonstration system.
