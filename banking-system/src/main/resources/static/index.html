@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meridian Bank | Personal banking</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b2545'/%3E%3Ctext x='32' y='45' font-family='Arial' font-size='40' font-weight='bold' text-anchor='middle' fill='white'%3EM%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+
+  <!-- ============ SIGN IN ============ -->
+  <div id="auth-screen" class="auth-screen">
+    <aside class="auth-brand">
+      <div class="auth-brand-inner">
+        <div class="logo-row">
+          <span class="logo-mark">M</span>
+          <span class="logo-text">Meridian Bank</span>
+        </div>
+        <div class="auth-pitch">
+          <span class="eyebrow light">Personal banking</span>
+          <h1>Your money,<br>clearly in view.</h1>
+          <p>Savings, investments and salary accounts together in one place. Open an account, move money and see every transaction as it happens.</p>
+        </div>
+        <div class="auth-features">
+          <div class="auth-feature"><span class="feature-dot"></span><div><strong>Three account types</strong><small>Each with its own rules and interest rate</small></div></div>
+          <div class="auth-feature"><span class="feature-dot"></span><div><strong>Clear transaction history</strong><small>Every deposit, withdrawal and interest payment</small></div></div>
+          <div class="auth-feature"><span class="feature-dot"></span><div><strong>Secure by design</strong><small>Password hashing and a layered Java backend</small></div></div>
+        </div>
+        <div class="auth-brand-foot">CSE202 &middot; Object Oriented Analysis &amp; Design with Java</div>
+      </div>
+    </aside>
+
+    <main class="auth-panel">
+      <div class="auth-card">
+        <div class="auth-head">
+          <span class="eyebrow">Welcome</span>
+          <h2 id="auth-title">Sign in to your account</h2>
+          <p id="auth-subtitle">Enter your details to continue to online banking.</p>
+        </div>
+
+        <div class="auth-tabs">
+          <button id="tab-login" class="auth-tab active" type="button">Sign in</button>
+          <button id="tab-register" class="auth-tab" type="button">Register</button>
+        </div>
+
+        <form id="login-form" class="form">
+          <label>Email address<input id="login-email" type="email" autocomplete="username" value="dafila.philimon@example.com" required></label>
+          <label>Password<input id="login-password" type="password" autocomplete="current-password" value="Passw0rd!" required></label>
+          <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+
+        <form id="register-form" class="form hidden">
+          <div class="form-row">
+            <label>First name<input id="reg-first" required></label>
+            <label>Surname<input id="reg-last" required></label>
+          </div>
+          <label>Address<input id="reg-address"></label>
+          <label>Email address<input id="reg-email" type="email" required></label>
+          <label>Password<input id="reg-password" type="password" minlength="8" required></label>
+          <label class="checkbox"><input id="reg-employed" type="checkbox"> I am currently employed</label>
+          <div class="form-row">
+            <label>Company name<input id="reg-company"></label>
+            <label>Company address<input id="reg-company-address"></label>
+          </div>
+          <button class="btn btn-primary btn-block" type="submit">Create my account</button>
+        </form>
+
+        <div class="demo-box">
+          <div class="demo-copy">
+            <strong>Demo access &middot; Dafila Philimon</strong>
+            <small>Email <code>dafila.philimon@example.com</code></small>
+            <small>Password <code>Passw0rd!</code></small>
+          </div>
+          <button id="fill-demo" class="btn btn-ghost btn-sm" type="button">Use demo</button>
+        </div>
+      </div>
+      <p class="auth-legal">Balances are shown in Botswana Pula (BWP). This is a coursework demonstration system.</p>
+    </main>
+  </div>
+
+  <!-- ============ ONLINE BANKING ============ -->
+  <div id="app-shell" class="app-shell hidden">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <span class="logo-mark">M</span>
+        <div><strong>Meridian Bank</strong><small>Personal banking</small></div>
+      </div>
+
+      <nav class="nav" id="nav">
+        <button class="nav-item active" data-view="overview" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5M5 9.5V21h14V9.5M9 21v-7h6v7"/></svg>
+          <span>Overview</span>
+        </button>
+        <button class="nav-item" data-view="accounts" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg>
+          <span>Accounts</span>
+        </button>
+        <button class="nav-item" data-view="activity" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/><path d="m17 16 2 2 3-4"/></svg>
+          <span>Transactions</span>
+        </button>
+        <button class="nav-item" data-view="open" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+          <span>Open account</span>
+        </button>
+        <button class="nav-item" data-view="interest" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg>
+          <span>Interest</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="db-pill"><span class="dot"></span><span id="db-label">Checking connection</span></div>
+        <button id="logout-btn" class="nav-item" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 5H5v14h5M14 8l4 4-4 4M9 12h9"/></svg>
+          <span>Log out</span>
+        </button>
+      </div>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow" id="today">Today</p>
+          <h1 id="greeting">Good day</h1>
+        </div>
+        <div class="topbar-actions">
+          <span class="secure-chip"><span class="dot"></span> Secure session</span>
+          <div class="avatar" id="avatar">DP</div>
+          <div class="user-meta"><strong id="user-name">Dafila Philimon</strong><small id="user-email">dafila.philimon@example.com</small></div>
+        </div>
+      </header>
+
+      <div id="toast" class="toast hidden" role="status"></div>
+
+      <div class="content">
+        <!-- OVERVIEW -->
+        <section id="view-overview" class="view">
+          <div class="hero">
+            <div class="hero-left">
+              <p class="hero-label">Total available balance</p>
+              <div class="hero-amount" id="total-balance">BWP 0.00</div>
+              <p class="hero-sub" id="hero-sub">Across 0 accounts</p>
+            </div>
+            <div class="hero-divider"></div>
+            <div class="hero-right">
+              <p class="hero-label">Portfolio summary</p>
+              <div class="hero-stat"><span>Accounts held</span><strong id="hero-accounts">0</strong></div>
+              <div class="hero-stat"><span>Interest bearing</span><strong id="hero-interest">0</strong></div>
+              <div class="hero-stat"><span>Currency</span><strong>BWP</strong></div>
+            </div>
+          </div>
+
+          <div class="section-head"><h2>Quick actions</h2><span class="muted small">Manage your money in one click</span></div>
+          <div class="quick-actions">
+            <button class="quick" id="qa-deposit" type="button"><span class="quick-icon teal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span><span><strong>Deposit</strong><small>Add funds</small></span></button>
+            <button class="quick" id="qa-withdraw" type="button"><span class="quick-icon blue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></span><span><strong>Withdraw</strong><small>Take funds out</small></span></button>
+            <button class="quick" data-goto="open" type="button"><span class="quick-icon gold"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span><span><strong>Open account</strong><small>Savings, investment, cheque</small></span></button>
+            <button class="quick" data-goto="interest" type="button"><span class="quick-icon navy"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></span><span><strong>Monthly interest</strong><small>Run the interest payment</small></span></button>
+          </div>
+
+          <div class="section-head"><h2>Your accounts</h2><button class="link-btn" data-goto="accounts" type="button">View all accounts</button></div>
+          <div id="overview-accounts" class="account-grid"></div>
+
+          <div class="section-head"><h2>Recent activity</h2><button class="link-btn" data-goto="activity" type="button">Full statement</button></div>
+          <div class="panel no-pad">
+            <div class="table-scroll">
+              <table class="txn-table">
+                <thead><tr><th>Date</th><th>Description</th><th>Account</th><th>Type</th><th class="num">Amount</th><th class="num">Balance</th></tr></thead>
+                <tbody id="recent-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ACCOUNTS -->
+        <section id="view-accounts" class="view hidden">
+          <div class="page-head"><div><h2>Accounts</h2><p>All accounts held under your profile. Select one to see its details.</p></div><button class="btn btn-primary" data-goto="open" type="button">Open new account</button></div>
+          <div id="all-accounts" class="account-grid"></div>
+          <div class="panel detail-panel">
+            <h3>Account details</h3>
+            <div id="account-detail" class="muted">Select an account above to inspect it.</div>
+          </div>
+        </section>
+
+        <!-- TRANSACTIONS -->
+        <section id="view-activity" class="view hidden">
+          <div class="page-head"><div><h2>Transactions</h2><p>A complete record of money moving in and out of your accounts.</p></div><button id="refresh-btn" class="btn btn-ghost" type="button">Refresh</button></div>
+          <div class="panel no-pad">
+            <div class="filter-row">
+              <label>Filter by account<select id="history-filter"></select></label>
+              <span id="history-count" class="muted small"></span>
+            </div>
+            <div class="table-scroll">
+              <table class="txn-table">
+                <thead><tr><th>Date</th><th>Description</th><th>Account</th><th>Type</th><th class="num">Amount</th><th class="num">Balance</th></tr></thead>
+                <tbody id="history-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- OPEN ACCOUNT -->
+        <section id="view-open" class="view hidden">
+          <div class="page-head"><div><h2>Open an account</h2><p>Choose the account that fits how you plan to use your money.</p></div></div>
+          <div class="open-layout">
+            <div class="panel">
+              <div class="type-options" id="type-options">
+                <label class="type-option active"><input type="radio" name="acct-type" value="SAVINGS" checked><span class="type-name">Savings</span><span class="type-rate">0.05% / month</span><small>Deposits only, no withdrawals</small></label>
+                <label class="type-option"><input type="radio" name="acct-type" value="INVESTMENT"><span class="type-name">Investment</span><span class="type-rate">5% / month</span><small>Minimum BWP 500.00 opening</small></label>
+                <label class="type-option"><input type="radio" name="acct-type" value="CHEQUE"><span class="type-name">Cheque</span><span class="type-rate">No interest</span><small>Salary account, employed only</small></label>
+              </div>
+              <form id="open-form" class="form open-form">
+                <div class="form-row">
+                  <label>Opening balance (BWP)<input id="open-balance" type="number" step="0.01" min="0" value="500.00" required></label>
+                  <label>Branch<input id="open-branch" value="Gaborone Main" required></label>
+                </div>
+                <div id="employer-fields" class="form-row hidden">
+                  <label>Company name<input id="open-company"></label>
+                  <label>Company address<input id="open-company-address"></label>
+                </div>
+                <p id="open-hint" class="form-hint">A savings account pays 0.05% monthly interest and does not permit withdrawals.</p>
+                <button id="open-btn" class="btn btn-primary" type="submit">Open this account</button>
+              </form>
+            </div>
+            <aside class="panel side-note">
+              <h3>Before you open</h3>
+              <ul class="note-list">
+                <li><strong>Savings</strong> grows slowly at 0.05% each month. Deposits are allowed, withdrawals are not.</li>
+                <li><strong>Investment</strong> pays 5% monthly and needs at least BWP 500.00 to open. You can deposit and withdraw freely.</li>
+                <li><strong>Cheque</strong> is for salary credits. Only working customers can open one, and employer details are required.</li>
+                <li>You may hold any mix of the three account types at the same time.</li>
+              </ul>
+            </aside>
+          </div>
+        </section>
+
+        <!-- INTEREST -->
+        <section id="view-interest" class="view hidden">
+          <div class="page-head"><div><h2>Monthly interest</h2><p>Interest is calculated on the current balance of each eligible account.</p></div></div>
+          <div class="interest-layout">
+            <div class="panel interest-main">
+              <span class="eyebrow">Scheduled payment</span>
+              <h3>Run the monthly interest cycle</h3>
+              <p>The controller walks every account and pays interest only to those that earn it. Cheque accounts are skipped automatically.</p>
+              <div class="rate-row">
+                <div class="rate-card"><small>Investment</small><strong>5%</strong><span>per month</span></div>
+                <div class="rate-card"><small>Savings</small><strong>0.05%</strong><span>per month</span></div>
+                <div class="rate-card"><small>Cheque</small><strong>0%</strong><span>not eligible</span></div>
+              </div>
+              <button id="interest-btn" class="btn btn-primary" type="button">Pay monthly interest</button>
+            </div>
+            <div class="panel">
+              <h3>Latest interest payments</h3>
+              <div id="interest-list" class="interest-list muted small">No interest payments recorded yet.</div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <footer class="footer">Meridian Bank &middot; CSE202 coursework project &middot; Core model &rarr; Controller &rarr; JDBC DAO</footer>
+    </div>
+  </div>
+
+  <!-- ============ MOVE MONEY DIALOG ============ -->
+  <div id="modal" class="modal-overlay hidden">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-head">
+        <div><span class="eyebrow">Move money</span><h3 id="modal-title">Deposit funds</h3></div>
+        <button id="modal-close" class="icon-btn" type="button" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="mode-switch">
+          <button id="mode-deposit" class="active" type="button">Deposit</button>
+          <button id="mode-withdraw" type="button">Withdraw</button>
+        </div>
+        <div class="form">
+          <label>Account<select id="action-account"></select></label>
+          <label>Amount (BWP)<input id="action-amount" type="number" step="0.01" min="0.01" placeholder="0.00"></label>
+          <label>Reference <span class="muted">(optional)</span><input id="action-note" placeholder="e.g. Salary, rent, transfer"></label>
+          <p id="modal-hint" class="form-hint"></p>
+          <button id="modal-submit" class="btn btn-primary btn-block" type="button">Confirm deposit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+# ---------- Build output ----------
+target/
+out/
+bin/
+*.class
+
+# ---------- Agent / tooling artifacts (never commit) ----------
+.workbuddy-ai/
+.playwright-cli/
+playwright-report/
+test-results/
+*.log
+*.yml.bak
+
+# ---------- Secrets and local configuration ----------
+.env
+.env.*
+!.env.example
+*.keystore
+
+# ---------- IDE / OS ----------
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db

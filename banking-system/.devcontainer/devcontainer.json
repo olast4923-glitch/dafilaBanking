@@ -1,0 +1,24 @@
+{
+  "name": "CSE202 Banking System",
+  "image": "mcr.microsoft.com/devcontainers/java:1-21-bookworm",
+  "forwardPorts": [8080],
+  "portsAttributes": {
+    "8080": {
+      "label": "Banking web app",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "postCreateCommand": "mvn -q -DskipTests package",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-maven"
+      ],
+      "settings": {
+        "java.configuration.updateBuildConfiguration": "automatic"
+      }
+    }
+  },
+  "remoteUser": "vscode"
+}
